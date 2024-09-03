@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import cross_origin
 from notion_AI_agent import query, SendToNotion
 app = Flask(__name__)
 
@@ -19,6 +20,7 @@ def post_query():
 
 
 @app.route('/send-to-notion', methods=['POST'])
+@cross_origin()
 def send_to_notion():
     try:
         data = request.json
